@@ -11,42 +11,42 @@
 #include <ctime>
 
 // Gets an empty tic-tac-toe game board represented by a 3x3 2-dimensional vector
-std::vector<std::vector<char>> get2DTicTacToeVector();
+std::vector<std::vector<char> > get2DTicTacToeVector();
 
 // Displays a visual representation of what the current tic-tac-toe board looks like
-void displayCurrentBoard(const std::vector<std::vector<char>>& v);
+void displayCurrentBoard(const std::vector<std::vector<char> >& v);
 
 // Displays a welcome screen
 void displayWelcomeScreen();
 
 // Determines if there is a winner. If so, an X or an O is returned, depending on which letter occupies a three in a row
 // Otherwise, the character, *, used to signify an empty spot is returned instead
-char getCurrentWinner(const std::vector<std::vector<char>>& v);
+char getCurrentWinner(const std::vector<std::vector<char> >& v);
 
 // Allows the player to execute his/her move on the board
-void executePlayerTurn(std::vector<std::vector<char>>& v, char player);
+void executePlayerTurn(std::vector<std::vector<char> >& v, char player);
 
 // Allows the computer to execute a move on the board
-void executeComputerTurn(std::vector<std::vector<char>>& v, char computer, char player);
+void executeComputerTurn(std::vector<std::vector<char> >& v, char computer, char player);
 
 // Updates the board by replacing an asterisk with an 'o' or 'X' in the specified board location
-void updateBoard(std::vector<std::vector<char>>& v, char row, char col, char player);
+void updateBoard(std::vector<std::vector<char> >& v, char row, char col, char player);
 
 // Gets the number of empty spots left on the board
-int getNumOfSpotsLeft(const std::vector<std::vector<char>>& v);
+int getNumOfSpotsLeft(const std::vector<std::vector<char> >& v);
 
 // Determines if the board is full (all spots have been taken)
-bool boardIsFull(const std::vector<std::vector<char>>& v);
+bool boardIsFull(const std::vector<std::vector<char> >& v);
 
 // Initializes the row and column variables with random integer values, which correspond to a random empty spot on the board
-void initializeRandomRowAndColumn(const std::vector<std::vector<char>>& v, int& row, int& col);
+void initializeRandomRowAndColumn(const std::vector<std::vector<char> >& v, int& row, int& col);
 
 // Looks for any two-in-a-rows of the same specified letter in any direction.
 // If there are none, then row and col are initialized to -1
-void initializeBestRowAndColumn(const std::vector<std::vector<char>>& v, int& row, int& col, char letter);
+void initializeBestRowAndColumn(const std::vector<std::vector<char> >& v, int& row, int& col, char letter);
 
 // Checks for a winner and announces if so
-bool checkForWinner(const std::vector<std::vector<char>>& v, char player, char computer);
+bool checkForWinner(const std::vector<std::vector<char> >& v, char player, char computer);
 
 // Gets the player's game character ('X' or 'O')
 char getPlayerChar();
@@ -61,7 +61,7 @@ void newLine();
 int main()
 {
     displayWelcomeScreen();
-    std::vector<std::vector<char>> v = get2DTicTacToeVector();
+    std::vector<std::vector<char> > v = get2DTicTacToeVector();
 
     char player = getPlayerChar();
     char computer = getComputerChar(player);
@@ -90,7 +90,7 @@ int main()
     return 0;
 }
 
-bool checkForWinner(const std::vector<std::vector<char>>& v, char player, char computer)
+bool checkForWinner(const std::vector<std::vector<char> >& v, char player, char computer)
 {
     if (getCurrentWinner(v) == player)
     {
@@ -144,7 +144,7 @@ char getPlayerChar()
     return toupper(character);
 }
 
-bool boardIsFull(const std::vector<std::vector<char>>& v)
+bool boardIsFull(const std::vector<std::vector<char> >& v)
 {
     for (int i = 0; i < v.size(); i++)
     {
@@ -158,7 +158,7 @@ bool boardIsFull(const std::vector<std::vector<char>>& v)
     return true;
 }
 
-void updateBoard(std::vector<std::vector<char>>& v, char row, char col, char player)
+void updateBoard(std::vector<std::vector<char> >& v, char row, char col, char player)
 {
     if ((row != '1' && row != '2' && row != '3') || (col != '1' && col != '2' && col != '3'))
     {
@@ -169,7 +169,7 @@ void updateBoard(std::vector<std::vector<char>>& v, char row, char col, char pla
     v[row - 49][col - 49] = player;
 }
 
-void executePlayerTurn(std::vector<std::vector<char>>& v, char player)
+void executePlayerTurn(std::vector<std::vector<char> >& v, char player)
 {
     if (boardIsFull(v))
     {
@@ -238,7 +238,7 @@ void executePlayerTurn(std::vector<std::vector<char>>& v, char player)
 
 }
 
-void executeComputerTurn(std::vector<std::vector<char>>& v, char computer, char player)
+void executeComputerTurn(std::vector<std::vector<char> >& v, char computer, char player)
 {
     srand(time(nullptr));
 
@@ -284,7 +284,7 @@ void executeComputerTurn(std::vector<std::vector<char>>& v, char computer, char 
 
 }
 
-void initializeRandomRowAndColumn(const std::vector<std::vector<char>>& v, int& row, int& col)
+void initializeRandomRowAndColumn(const std::vector<std::vector<char> >& v, int& row, int& col)
 {
     int random = rand() % (getNumOfSpotsLeft(v)) + 1;
     int count = 0;
@@ -309,7 +309,7 @@ void initializeRandomRowAndColumn(const std::vector<std::vector<char>>& v, int& 
     }
 }
 
-char getCurrentWinner(const std::vector<std::vector<char>>& v)
+char getCurrentWinner(const std::vector<std::vector<char> >& v)
 {
     // Check for any horizontal or vertical 3-in-a-rows
     for (int i = 0; i < v.size(); i++)
@@ -334,7 +334,7 @@ char getCurrentWinner(const std::vector<std::vector<char>>& v)
     return '*';
 }
 
-void initializeBestRowAndColumn(const std::vector<std::vector<char>>& v, int& row, int& col, char letter)
+void initializeBestRowAndColumn(const std::vector<std::vector<char> >& v, int& row, int& col, char letter)
 {
     int letterCount = 0, emptyCount = 0, temp = -1;
     row = -1;
@@ -433,7 +433,7 @@ void initializeBestRowAndColumn(const std::vector<std::vector<char>>& v, int& ro
     }
 }
 
-int getNumOfSpotsLeft(const std::vector<std::vector<char>>& v)
+int getNumOfSpotsLeft(const std::vector<std::vector<char> >& v)
 {
     int num = 0;
 
@@ -458,20 +458,25 @@ void displayWelcomeScreen()
     newLine();
 }
 
-std::vector<std::vector<char>> get2DTicTacToeVector()
+std::vector<std::vector<char> > get2DTicTacToeVector()
 {
-    std::vector<std::vector<char>> v;
+    std::vector<std::vector<char> > v;
 
     for (int i = 0; i < 3; i++)
     {
-        std::vector<char> temp = {'*', '*', '*'};
+        std::vector<char> temp;
+
+        temp.push_back('*');
+        temp.push_back('*');
+        temp.push_back('*');
+
         v.push_back(temp);
     }
 
     return v;
 }
 
-void displayCurrentBoard(const std::vector<std::vector<char>>& v)
+void displayCurrentBoard(const std::vector<std::vector<char> >& v)
 {
     std::cout << std::endl;
 
